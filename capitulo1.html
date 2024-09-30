@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 1 - Título del Manga</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1F2937;
+            color: white;
+        }
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background-color: #1F2937;
+        }
+        header img {
+            max-height: 200px;
+            cursor: pointer; /* Cursor de mano para el logo */
+        }
+        .chapter-title {
+            background-color: #1c1c1c;
+            padding: 1rem;
+            text-align: center;
+            width: 50%;
+            border-radius: 10px;
+            margin: 20px auto; /* Centra el cuadro */
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 2rem;
+        }
+        .manga-page {
+            display: none;
+            width: calc(40% - 20px); /* Tamaño más pequeño */
+            margin: 10px;
+        }
+        .manga-page img { /*Imagenes del Capitulo */
+            width: 100%;
+            border-radius: 10px;
+        }
+        .slider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .slider button {
+            background-color: #4A5568;
+            color: white;
+            border: none;
+            padding: 10px; /* cuadros del siguiente */
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0 20px;
+        }
+        .slider button:hover {
+            background-color: #2D3748;
+        }
+        footer {
+            background-color: #1c1c1c;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .chapter-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 0 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+        .chapter-list .chapter-item {
+            position: relative;
+            overflow: hidden;
+        }
+        .chapter-list img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        .chapter-list img:hover {
+            transform: scale(1.05);
+        }
+        .chapter-list .chapter-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 5px;
+            font-size: 14px;
+            transition: opacity 0.3s;
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chapter-list .chapter-item:hover .chapter-name {
+            opacity: 1;
+        }
+        .section-title {
+            text-align: center;
+            background-color: #1c1c1c; /* Cuadro negro para el título "Capítulos" */
+            padding: 1rem;
+            margin-top: 2rem;
+            width: 10%;
+            border-radius: 10px;
+            margin: 0 auto; /* Centra el cuadro */
+            font-size: 2rem; /* Aquí defines el tamaño del texto */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Logo del sitio -->
+<header>
+    <a href="index.html">
+        <img src="images/Logo Shumi PNG.png" alt="Logo del Sitio">
+    </a>
+</header>
+
+<!-- Título del capítulo -->
+<div class="chapter-title">
+    <h1>Capítulo 1 - Título del Manga</h1>
+</div>
+
+<!-- Contenedor de imágenes -->
+<div class="slider">
+    <!-- Siguiente está a la izquierda -->
+    <button id="nextButton" onclick="nextImages()">← Siguiente</button>
+    <div class="content">
+        <div class="manga-page" id="page1">
+            <img src="images/Dibujo de Muestra 1.jpg" alt="Página 1">
+        </div>
+        <div class="manga-page" id="page2">
+            <img src="images/Dibujo de Muestra 2.jpg" alt="Página 2">
+        </div>
+        <div class="manga-page" id="page3">
+            <img src="images/Dibujo de Muestra 3.jpg" alt="Página 3">
+        </div>
+        <div class="manga-page" id="page4">
+            <img src="images/Dibujo de Muestra 5.jpg" alt="Página 4">
+        </div>
+        <div class="manga-page" id="page5">
+            <img src="images/Dibujo de Muestra 1.jpg" alt="Página 5">
+        </div>
+        <div class="manga-page" id="page6">
+            <img src="images/Dibujo de Muestra 2.jpg" alt="Página 6">
+        </div>
+    </div>
+    <!-- Anterior está a la derecha -->
+    <button id="prevButton" onclick="prevImages()">Anterior →</button>
+</div>
+
+<!-- Lista de capítulos -->
+<section>
+    <h2 class="section-title">Capítulos</h2> <!-- Cuadro negro centrado -->
+    <div class="chapter-list">
+        <div class="chapter-item">
+            <img src="images/Ilustración152.jpg" alt="Capítulo 1">
+            <div class="chapter-name">Capítulo 1</div>
+        </div>
+        <div class="chapter-item">
+            <img src="images/Ilustración152.jpg" alt="Capítulo 2">
+            <div class="chapter-name">Capítulo 2</div>
+        </div>
+        <div class="chapter-item">
+            <img src="images/Ilustración133.png" alt="Capítulo 3">
+            <div class="chapter-name">Capítulo 3</div>
+        </div>
+        <div class="chapter-item">
+            <img src="images/Ilustración152.jpg" alt="Capítulo 4">
+            <div class="chapter-name">Capítulo 4</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2024 Shumi. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    // Inicialización de variables
+    let currentStartIndex = 0;
+    const pages = document.querySelectorAll('.manga-page');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+
+    function showImages(startIndex) {
+        // Ocultar todas las imágenes
+        pages.forEach((page, index) => {
+            page.style.display = 'none';
+        });
+
+        // Mostrar las imágenes de dos en dos
+        if (pages[startIndex]) pages[startIndex].style.display = 'block';
+        if (pages[startIndex + 1]) pages[startIndex + 1].style.display = 'block';
+
+        // Control de visibilidad de los botones
+        prevButton.style.display = startIndex === 0 ? 'none' : 'inline-block';
+        nextButton.style.display = startIndex + 2 >= pages.length ? 'none' : 'inline-block';
+    }
+
+    function nextImages() {
+        if (currentStartIndex + 2 < pages.length) {
+            currentStartIndex += 2;
+        }
+        showImages(currentStartIndex);
+    }
+
+    function prevImages() {
+        if (currentStartIndex - 2 >= 0) {
+            currentStartIndex -= 2;
+        }
+        showImages(currentStartIndex);
+    }
+
+    // Mostrar las primeras 2 imágenes al cargar la página
+    document.addEventListener('DOMContentLoaded', function () {
+        showImages(0);
+    });
+</script>
+
+</body>
+</html>
