@@ -9,9 +9,10 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1F2937; /* Color de fondo actualizado */
+            background-color: #1F2937;
             color: white;
             text-align: center;
+            transition: background-color 0.3s, color 0.3s; /* Transición para modo claro/oscuro */
         }
 
         /* Estilos del contenedor del encabezado */
@@ -33,7 +34,7 @@
 
         /* Estilos del menú de navegación */
         nav {
-            background-color: #1c1c1c; /* Color de fondo del menú */
+            background-color: #1c1c1c;
             padding: 1rem 2rem;
             display: inline-block;
             border-radius: 8px;
@@ -44,10 +45,30 @@
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.3s;
         }
 
+        /* Animación en hover para los botones del menú */
         nav a:hover {
-            text-decoration: underline;
+            color: #1da1f2; /* Cambia el color del texto al hacer hover */
+        }
+
+        /* Barra animada bajo los botones al hacer hover */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: #1da1f2;
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         /* Contenedor de novedades */
@@ -57,6 +78,7 @@
             border-radius: 10px;
             max-width: 600px;
             margin: 50px auto;
+            transition: background-color 0.3s;
         }
 
         h2 {
@@ -107,9 +129,63 @@
         .novedad-content a:hover {
             text-decoration: underline;
         }
+
+        /* Botón para alternar entre modo oscuro y modo claro */
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #1da1f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background-color: #0a74c7;
+        }
+
+        /* Modo claro */
+        body.light-mode {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        body.light-mode nav {
+            background-color: #fff;
+        }
+
+        body.light-mode nav a {
+            color: #333;
+        }
+
+        body.light-mode .novedades-container {
+            background-color: #e2e8f0;
+        }
+
+        body.light-mode .novedad {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .toggle-btn {
+            background-color: #333;
+            color: white;
+        }
+
+        body.light-mode .toggle-btn:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Botón para alternar entre modo oscuro y modo claro -->
+    <button class="toggle-btn" id="toggle-theme-btn">Modo Claro</button>
 
     <!-- Encabezado con el logo y el menú de navegación -->
     <div class="header-container">
@@ -118,7 +194,7 @@
         </div>
         <nav>
             <a href="index.html">Inicio</a>
-            <a href="#">Ilustraciones</a>
+            <a href="ilustraciones.html">Ilustraciones</a>
             <a href="novedades.html">Novedades</a>
             <a href="acerca-de.html">Acerca de</a>
         </nav>
@@ -128,7 +204,7 @@
     <div class="novedades-container">
         <h2>Novedades</h2>
 
-        <!-- Primera novedad -->
+        <!-- Ejemplo de novedades -->
         <div class="novedad">
             <div class="novedad-header">
                 <img src="images/Ilustración152.jpg" alt="Avatar" class="avatar"> <!-- Reemplaza con la URL del avatar -->
@@ -142,64 +218,22 @@
             </div>
         </div>
 
-        <!-- Segunda novedad -->
-        <div class="novedad">
-            <div class="novedad-header">
-                <img src="images/avatar1.jpg" alt="Avatar" class="avatar"> <!-- Reemplaza con la URL del avatar -->
-                <div>
-                    <p class="username">Mococzila</p>
-                    <p class="fecha">1 jul. 2016</p>
-                </div>
-            </div>
-            <div class="novedad-content">
-                <p>Cómo clonar pokemons en Pokémon XY <a href="aqui va un enlace" target="_blank">youtu.be/iB8XGxDYSOQ</a></p>
-            </div>
-        </div>
-
-        <!-- Tercera novedad -->
-        <div class="novedad">
-            <div class="novedad-header">
-                <img src="images/avatar1.jpg" alt="Avatar" class="avatar"> <!-- Reemplaza con la URL del avatar -->
-                <div>
-                    <p class="username">Mococzila</p>
-                    <p class="fecha">17 ago. 2014</p>
-                </div>
-            </div>
-            <div class="novedad-content">
-                <p>Vean mi canal principal <a href="aqui va un enlace" target="_blank">aqui va un enlace</a></p>
-            </div>
-        </div>
-
-        <!-- Cuarta novedad -->
-        <div class="novedad">
-            <div class="novedad-header">
-                <img src="images/avatar1.jpg" alt="Avatar" class="avatar"> <!-- Reemplaza con la URL del avatar -->
-                <div>
-                    <p class="username">Mococzila</p>
-                    <p class="fecha">17 ago. 2014</p>
-                </div>
-            </div>
-            <div class="novedad-content">
-                <p>Vean mi canal principal <a href="aqui va un enlace" target="_blank">youtube.com/channel/UCbDKI</a></p>
-            </div>
-        </div>
-
-        <!-- Quinta novedad -->
-        <div class="novedad">
-            <div class="novedad-header">
-                <img src="images/avatar1.jpg" alt="Avatar" class="avatar"> <!-- Reemplaza con la URL del avatar -->
-                <div>
-                    <p class="username">Mococzila</p>
-                    <p class="fecha">17 ago. 2014</p>
-                </div>
-            </div>
-            <div class="novedad-content">
-                <p>Vean mi canal principal <a href="aqui va un enlace" target="_blank">youtube.com/channel/UCbDKI</a></p>
-            </div>
-        </div>
+        <!-- Repite el bloque anterior para más novedades... -->
 
     </div>
 
+    <script>
+        // Función para alternar entre modo oscuro y modo claro
+        const toggleBtn = document.getElementById('toggle-theme-btn');
+        toggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                toggleBtn.textContent = 'Modo Oscuro';
+            } else {
+                toggleBtn.textContent = 'Modo Claro';
+            }
+        });
+    </script>
+
 </body>
 </html>
-
