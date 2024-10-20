@@ -6,6 +6,18 @@
     <title>Ilustraciones - Shumi</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Aplicar box-sizing a todos los elementos para evitar desbordamientos por padding y border */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Prevenir el desplazamiento horizontal */
+        html, body {
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             font-family: Arial, sans-serif;
             background-color: #1F2937;
@@ -13,6 +25,7 @@
             margin: 0;
             padding: 0;
             text-align: center;
+            transition: background-color 0.3s, color 0.3s; /* Transición para modo claro/oscuro */
         }
         .header-container {
             display: flex;
@@ -31,15 +44,30 @@
             padding: 1rem 2rem;
             display: inline-block;
             border-radius: 8px;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
         nav a {
             color: white;
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
+            position: relative;
+            transition: color 0.3s;
         }
-        nav a:hover {
-            text-decoration: underline;
+        /* Animación de subrayado */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: white;
+            left: 50%;
+            bottom: -5px;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
+            left: 0;
         }
 
         /* Galería de imágenes en filas de 3 */
@@ -96,9 +124,74 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        /* Modo claro */
+        body.light-mode {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        body.light-mode nav {
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        body.light-mode nav a {
+            color: #333;
+        }
+        body.light-mode nav a::after {
+            background-color: #333;
+        }
+        body.light-mode .gallery-container img {
+            border-color: #333;
+        }
+        body.light-mode .toggle-btn {
+            background-color: #333;
+            color: white;
+        }
+
+        footer {
+            background-color: #1c1c1c;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Botón para alternar entre modo oscuro y modo claro */
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #1da1f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background-color: #0a74c7;
+        }
+
+        body.light-mode .toggle-btn {
+            background-color: #333;
+            color: white;
+        }
+
+        body.light-mode .toggle-btn:hover {
+            background-color: #555;
+        }
+
     </style>
 </head>
 <body>
+    <!-- Botón para alternar entre modo oscuro y modo claro -->
+    <button class="toggle-btn" id="toggle-theme-btn">Modo Claro</button>
+
     <!-- Encabezado con logo y navegación -->
     <div class="header-container">
         <div class="logo-container">
@@ -114,62 +207,68 @@
 
     <!-- Galería de imágenes en formato de cuadrícula -->
     <div class="gallery-container">
-        <!-- Ejemplo de imagen 1 -->
         <div class="gallery-item">
             <a href="#img1">
                 <img src="images/Ilustración152.jpg" alt="Ilustración 1">
             </a>
         </div>
-        <!-- Ejemplo de imagen 2 -->
         <div class="gallery-item">
             <a href="#img2">
                 <img src="images/Zilla Ult2.png" alt="Ilustración 2">
             </a>
         </div>
-        <!-- Ejemplo de imagen 3 -->
         <div class="gallery-item">
             <a href="#img3">
                 <img src="images/Ilustración152.jpg" alt="Ilustración 3">
             </a>
         </div>
-        <!-- Ejemplo de imagen 4 -->
         <div class="gallery-item">
             <a href="#img4">
-                <img src="images/Zilla Ult2.png" alt="Ilustración 4">
+                <img src="images/Ilustración152.jpg" alt="Ilustración 4">
             </a>
         </div>
-        <!-- Ejemplo de imagen 5 -->
-        <div class="gallery-item">
-            <a href="#img5">
-                <img src="images/Ilustración152.jpg" alt="Ilustración 5">
-            </a>
-        </div>
-        <!-- Ejemplo de imagen 6 -->
-        <div class="gallery-item">
-            <a href="#img6">
-                <img src="images/Zilla Ult2.png" alt="Ilustración 6">
-            </a>
-        </div>
-        <!-- Más imágenes... -->
     </div>
 
     <!-- Lightbox modal de las imágenes -->
-    <div class="lightbox" id="img1">
+    <div class="lightbox" id="img1" onclick="closeLightbox(event)">
         <a href="#" class="close-btn">&times;</a>
         <img src="images/Ilustración152.jpg" alt="Ilustración 1 en grande">
     </div>
 
-    <div class="lightbox" id="img2">
+    <div class="lightbox" id="img2" onclick="closeLightbox(event)">
         <a href="#" class="close-btn">&times;</a>
         <img src="images/Zilla Ult2.png" alt="Ilustración 2 en grande">
     </div>
 
-    <div class="lightbox" id="img3">
+    <div class="lightbox" id="img3" onclick="closeLightbox(event)">
         <a href="#" class="close-btn">&times;</a>
         <img src="images/Ilustración152.jpg" alt="Ilustración 3 en grande">
     </div>
 
-    <!-- Más modales de Lightbox si es necesario... -->
+    <div class="lightbox" id="img4" onclick="closeLightbox(event)">
+        <a href="#" class="close-btn">&times;</a>
+        <img src="images/Ilustración152.jpg" alt="Ilustración 4 en grande">
+    </div>
 
+    <footer>
+        &copy; 2023 Shumi. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        // Función para alternar entre modo oscuro y modo claro
+        const toggleBtn = document.getElementById('toggle-theme-btn');
+        toggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            toggleBtn.textContent = document.body.classList.contains('light-mode') ? 'Modo Oscuro' : 'Modo Claro';
+        });
+
+        // Función para cerrar el lightbox al hacer clic fuera de la imagen
+        function closeLightbox(event) {
+            if (event.target.tagName !== 'IMG') {
+                window.location.hash = '';
+            }
+        }
+    </script>
 </body>
 </html>
+

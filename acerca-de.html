@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acerca de - Shumi</title>
     <style>
+        /* Aplicar box-sizing a todos los elementos para evitar desbordamientos por padding y border */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Prevenir el desplazamiento horizontal */
+        html, body {
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -12,34 +24,62 @@
             background-color: #1F2937;
             color: white;
             text-align: center;
+            transition: background-color 0.3s, color 0.3s; /* Transición para modo claro/oscuro */
         }
+
+        /* Estilos del contenedor del encabezado */
         .header-container {
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 20px;
         }
+
+        /* Contenedor del logo */
         .logo-container {
             margin-right: 10px;
         }
+
         .logo-container img {
-            max-height: 120px;
+            max-height: 120px; /* Ajusta la altura del logo */
         }
+
+        /* Estilos del menú de navegación */
         nav {
             background-color: #1c1c1c;
             padding: 1rem 2rem;
             display: inline-block;
             border-radius: 8px;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
+
         nav a {
             color: white;
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
+            position: relative;
+            transition: color 0.3s;
         }
-        nav a:hover {
-            text-decoration: underline;
+
+        /* Animación de subrayado */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: white;
+            left: 50%;
+            bottom: -5px;
+            transition: width 0.3s ease, left 0.3s ease;
         }
+
+        nav a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Estilos de la sección Acerca de */
         .about-section {
             display: flex;
             align-items: center;
@@ -49,40 +89,113 @@
             max-width: 900px;
             background-color: #2D3748;
             border-radius: 10px;
+            transition: background-color 0.3s; /* Transición para modo claro */
         }
+
         .about-image {
             flex: 1;
             margin-right: 20px;
         }
+
         .about-image img {
             border-radius: 50%;
             width: 250px;
         }
+
         .about-text {
             flex: 2;
         }
+
         .about-text h1 {
             font-size: 2rem;
             margin-bottom: 10px;
         }
+
         .about-text p {
             font-size: 1rem;
             line-height: 1.5;
         }
+
         .social-icons {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
+
         .social-icons a {
             margin: 0 10px;
         }
+
         .social-icons img {
             width: 40px;
+        }
+
+        footer {
+            background-color: #1c1c1c;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Botón para alternar entre modo oscuro y modo claro */
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #1da1f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background-color: #0a74c7;
+        }
+
+        /* Modo claro */
+        body.light-mode {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        body.light-mode nav {
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode nav a {
+            color: #333;
+        }
+
+        body.light-mode nav a::after {
+            background-color: #333;
+        }
+
+        body.light-mode .about-section {
+            background-color: #e2e8f0;
+        }
+
+        body.light-mode .toggle-btn {
+            background-color: #333;
+            color: white;
+        }
+
+        body.light-mode .toggle-btn:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
+
+    <!-- Botón para alternar entre modo oscuro y modo claro -->
+    <button class="toggle-btn" id="toggle-theme-btn">Modo Claro</button>
 
     <!-- Encabezado con logo y navegación -->
     <div class="header-container">
@@ -117,7 +230,7 @@
     </div>
 
     <!-- Sección de Donaciones -->
-<div style="display: flex; align-items: center; justify-content: center; margin-top: 50px;">
+    <div style="display: flex; align-items: center; justify-content: center; margin-top: 50px; margin-bottom: 50px;"> <!-- Añadido margin-bottom: 50px -->
     <!-- Texto de donaciones -->
     <div style="text-align: left; max-width: 600px;">
         <h2 style="font-size: 2rem; margin-bottom: 10px;">Regala un Café</h2>
@@ -133,5 +246,23 @@
     </div>
 </div>
 
+    <footer>
+        &copy; 2023 Shumi. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        // Función para alternar entre modo oscuro y modo claro
+        const toggleBtn = document.getElementById('toggle-theme-btn');
+        toggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                toggleBtn.textContent = 'Modo Oscuro';
+            } else {
+                toggleBtn.textContent = 'Modo Claro';
+            }
+        });
+    </script>
+
 </body>
 </html>
+

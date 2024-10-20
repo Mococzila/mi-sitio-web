@@ -5,11 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shumi - Inicio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&display=swap">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Aplicar box-sizing a todos los elementos para evitar desbordamientos por padding y border */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Prevenir el desplazamiento horizontal */
+        html, body {
+            overflow-x: hidden;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
             background-color: #1F2937;
             color: white;
             transition: background-color 0.3s, color 0.3s;
@@ -111,7 +122,7 @@
         }
 
         .banner-text h1 {
-            font-size: 2rem;
+            font-size: 4rem;
             margin-bottom: 10px;
         }
 
@@ -202,7 +213,7 @@
 
         /* Modo claro */
         body.light-mode .section-title {
-            background-color: #f0f0f0;
+            background-color: #e2e8f0;
             color: #333;
         }
 
@@ -248,6 +259,11 @@
         body.light-mode .toggle-btn:hover {
             background-color: #555;
         }
+        
+        .custom-font {
+            font-family: 'Bangers', system-ui; /* Aquí defines la fuente */
+        }
+
 
     </style>
 </head>
@@ -276,9 +292,13 @@
             <img src="images/65465464454TG.jpg" alt="Banner Image">
         </div>
         <div class="banner-text">
-            <h1>EL ÚLTIMO ALIENTO DEL UNIVERSO</h1>
+            <h1 class="custom-font">EL ÚLTIMO ALIENTO DEL UNIVERSO</h1>
             <h2>-Gonzalo Navarrete Toro-</h2>
             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua."</p>
         </div>
     </div>
@@ -290,58 +310,65 @@
             <div>
                 <a href="capitulo1.html">
                     <img src="images/Ilustración133.png" alt="Manga 1">
-                    <div class="overlay">Capítulo 1: Título del Manga</div>
+                    <div class="overlay">Capítulo 1</div>
                 </a>
             </div>
             <div>
                 <a href="capitulo2.html">
-                    <img src="images/Ilustración152.jpg" alt="Manga 2">
-                    <div class="overlay">Capítulo 2: Título del Manga</div>
+                    <img src="images/Ilustración133.png" alt="Manga 2">
+                    <div class="overlay">Capítulo 2</div>
                 </a>
             </div>
             <div>
                 <a href="capitulo3.html">
-                    <img src="images/Zilla Ult2.png" alt="Manga 3">
-                    <div class="overlay">Capítulo 3: Título del Manga</div>
+                    <img src="images/Ilustración133.png" alt="Manga 3">
+                    <div class="overlay">Capítulo 3</div>
                 </a>
             </div>
             <div>
                 <a href="capitulo4.html">
-                    <img src="images/Dibujo de Muestra 2 2.jpg" alt="Manga 4">
-                    <div class="overlay">Capítulo 4: Título del Manga</div>
+                    <img src="images/Ilustración133.png" alt="Manga 4">
+                    <div class="overlay">Capítulo 4</div>
                 </a>
             </div>
             <div>
                 <a href="capitulo5.html">
-                    <img src="images/Dibujo de Muestra 2 2.jpg" alt="Manga 5">
-                    <div class="overlay">Capítulo 5: Título del Manga</div>
+                    <img src="images/Ilustración133.png" alt="Manga 5">
+                    <div class="overlay">Capítulo 5</div>
                 </a>
             </div>
             <div>
                 <a href="capitulo6.html">
-                    <img src="images/Dibujo de Muestra 2 2.jpg" alt="Manga 6">
-                    <div class="overlay">Capítulo 6: Título del Manga</div>
+                    <img src="images/Ilustración133.png" alt="Manga 6">
+                    <div class="overlay">Capítulo 6</div>
                 </a>
             </div>
         </div>
     </section>
 
+    <!-- Pie de página -->
     <footer>
-        <p>&copy; 2024 Shumi - Todos los derechos reservados</p>
+        &copy; 2023 Shumi. Todos los derechos reservados.
     </footer>
 
     <script>
-        const toggleBtn = document.getElementById('toggle-theme-btn');
+        // Funcionalidad para alternar entre modo oscuro y claro
+        const toggleThemeBtn = document.getElementById('toggle-theme-btn');
         const body = document.body;
 
-        toggleBtn.addEventListener('click', () => {
+        toggleThemeBtn.addEventListener('click', () => {
             body.classList.toggle('light-mode');
-            toggleBtn.textContent = body.classList.contains('light-mode') ? 'Modo Oscuro' : 'Modo Claro';
+            if (body.classList.contains('light-mode')) {
+                toggleThemeBtn.textContent = 'Modo Oscuro';
+            } else {
+                toggleThemeBtn.textContent = 'Modo Claro';
+            }
         });
     </script>
 </body>
 
 </html>
+
 
 
 
